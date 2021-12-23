@@ -5,5 +5,27 @@ from dotenv import load_dotenv
 
 
 class VoiceChannelActivityBot(discord.Client):
-    pass
-    
+    """
+        Inherits from discord.py library implementation of a discord client
+    """
+
+    def __init__(self):
+        """
+            Loads the environment variables from a local .env file
+            Then constructs a typical discord client
+        """
+        load_dotenv()
+        self.TOKEN = os.getenv('DISCORD_TOKEN')
+        self.GUILD = os.getenv('DISCORD_GUILD')
+        super().__init__()
+
+
+    async def on_ready(self):
+        guild = discord.utils.get(self.guilds, name=self.GUILD)
+        print (
+            f'{self.user} is connected to the following guild:\n'
+            f'{guild.name}(id: {guild.id})'
+        )
+
+    def run(self):
+        super().run(self.TOKEN)
