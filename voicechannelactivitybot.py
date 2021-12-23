@@ -21,6 +21,10 @@ class VoiceChannelActivityBot(discord.Client):
 
 
     async def on_ready(self):
+        """
+            Prints a message to stdout when the bot is connected
+            to the server and ready to operate.
+        """
         guild = discord.utils.get(self.guilds, name=self.GUILD)
         print (
             f'{self.user} is connected to the following guild:\n'
@@ -28,4 +32,8 @@ class VoiceChannelActivityBot(discord.Client):
         )
 
     def run(self):
+        """
+            Encapuslates the parent classes run method with
+            an overriden version   
+        """
         super().run(self.TOKEN)
