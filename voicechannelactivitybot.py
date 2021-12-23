@@ -14,9 +14,13 @@ class VoiceChannelActivityBot(discord.Client):
             Loads the environment variables from a local .env file
             Then constructs a typical discord client
         """
+
+        # load server (guild) name and authentication token
         load_dotenv()
         self.TOKEN = os.getenv('DISCORD_TOKEN')
         self.GUILD = os.getenv('DISCORD_GUILD')
+
+        # Use the parent constructor to construct the client
         super().__init__()
 
 
