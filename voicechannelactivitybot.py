@@ -9,12 +9,12 @@ class VoiceChannelActivityBot(discord.Client):
         Inherits from discord.py library implementation of a discord client
     """
 
+
     def __init__(self):
         """
             Loads the environment variables from a local .env file
             Then constructs a typical discord client
         """
-
         # load server (guild) name and authentication token
         load_dotenv()
         self.TOKEN = os.getenv('DISCORD_TOKEN')
@@ -25,6 +25,7 @@ class VoiceChannelActivityBot(discord.Client):
         # Use the parent constructor to construct the client
         super().__init__()
 
+
     async def create_log_channel(self, guild):
         if all([c.name != self.logname for c in guild.channels]):
             self.log = await guild.create_text_channel(self.logname)
@@ -34,6 +35,7 @@ class VoiceChannelActivityBot(discord.Client):
                 if c.name == self.logname:
                     self.log = c
                     break
+
 
     async def on_ready(self):
         """
@@ -47,6 +49,7 @@ class VoiceChannelActivityBot(discord.Client):
             f'{self.user} is connected to the following guild:\n'
             f'{guild.name}(id: {guild.id})'
         )
+
 
     async def handle_voice_channel_enter(self, member):
         """
@@ -80,3 +83,4 @@ class VoiceChannelActivityBot(discord.Client):
             an overriden version   
         """
         super().run(self.TOKEN)
+
