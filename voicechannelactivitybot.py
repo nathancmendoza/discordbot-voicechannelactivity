@@ -1,3 +1,7 @@
+"""
+A discord client for announcing when guild
+members join and leave a voice channel
+"""
 import os
 
 import discord
@@ -17,8 +21,8 @@ class VoiceChannelActivityBot(discord.Client):
         """
         # load server (guild) name and authentication token
         load_dotenv()
-        self.TOKEN = os.getenv('DISCORD_TOKEN')
-        self.GUILD = os.getenv('DISCORD_GUILD')
+        self.token = os.getenv('DISCORD_TOKEN')
+        self.server = os.getenv('DISCORD_GUILD')
         self.log = None
         self.logname = 'vcalog'
 
@@ -27,13 +31,18 @@ class VoiceChannelActivityBot(discord.Client):
 
 
     async def create_log_channel(self, guild):
-        if all([c.name != self.logname for c in guild.channels]):
+        """
+            asynchronous method for creating a text channel
+            for the discord client to send its announcements.
+            If it already exists, use that channel instead
+        """
+        if all(c.name != self.logname for c in guild.channels):
             self.log = await guild.create_text_channel(self.logname)
         else:
             # if we get here, the log channel should already exist. Find it.
-            for c in guild.channels:
-                if c.name == self.logname:
-                    self.log = c
+            for channel in guild.channels:
+                if channel.name == self.logname:
+                    self.log = channel
                     break
 
 
@@ -42,9 +51,8 @@ class VoiceChannelActivityBot(discord.Client):
             Prints a message to stdout when the bot is connected
             to the server and ready to operate.
         """
-        guild = discord.utils.get(self.guilds, name=self.GUILD)
+        guild = discord.utils.get(self.guilds, name=self.server)
         await self.create_log_channel(guild)
-        
         print (
             f'{self.user} is connected to the following guild:\n'
             f'{guild.name}(id: {guild.id})'
@@ -57,7 +65,6 @@ class VoiceChannelActivityBot(discord.Client):
         """
         vcamessage = f'{member.name} has joined {member.voice.channel}'
         await self.log.send(vcamessage)
-        
 
     async def handle_voice_channel_exit(self, member, channelleft):
         """
@@ -80,7 +87,6 @@ class VoiceChannelActivityBot(discord.Client):
     def run(self):
         """
             Encapuslates the parent classes run method with
-            an overriden version   
+            an overriden version
         """
-        super().run(self.TOKEN)
-
+        super().run(self.token)
