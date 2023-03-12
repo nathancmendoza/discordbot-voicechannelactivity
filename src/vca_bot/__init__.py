@@ -26,9 +26,10 @@ class VoiceChannelActivityBot(discord.Client):
         self.server = os.getenv('DISCORD_GUILD')
         self.log = None
         self.logname = 'vcalog'
+        self.intents = discord.Intents(messages=True, guilds=True)
 
         # Use the parent constructor to construct the client
-        super().__init__()
+        super().__init__(intents = self.intents)
 
 
     async def create_log_channel(self, guild):
