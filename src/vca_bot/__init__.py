@@ -1,6 +1,7 @@
 """
-A discord client for announcing when guild
-members join and leave a voice channel
+    :module_name: vca_bot
+    :module_summary: A discord bot that monitors and announces voice channel activity in a server
+    :module_author: Nathan Mendoza (nathancm@uci.edu)
 """
 import os
 
