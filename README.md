@@ -4,6 +4,6 @@
 
 A discord bot that monitors and announces voice channel activity in a server
 
-## Contributers
+## Contributors
 
 - Nathan Mendoza (nathancm@uci.edu)
