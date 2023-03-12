@@ -7,7 +7,7 @@ name = "vca_bot"
 version = "0.0.1"
 description = "A discord bot that monitors and announces voice channel activity in a server"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.7"
 
 [project.scripts]
 VCABot = "vca_bot.cli:VCABot"
