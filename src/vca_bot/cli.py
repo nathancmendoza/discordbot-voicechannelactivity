@@ -9,6 +9,6 @@ import click
 from . import VoiceChannelActivityBot
 
 @click.command()
-def VCABot():
+def VCABot(): #pylint:disable=invalid-name
     """Entry point to VCABot"""
     VoiceChannelActivityBot().run()
