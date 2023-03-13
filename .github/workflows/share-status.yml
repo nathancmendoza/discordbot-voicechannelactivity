@@ -19,6 +19,7 @@ jobs:
     if: ${{ github.event.workflow_run.conclusion == 'failure' }}
     steps:
       - run: 
+          echo $BLYNK_AUTH_TOKEN
           curl "https://blynk.cloud/external/api/update?token=$BLYNK_AUTH_TOKEN&v2=255"
           curl "https://blynk.cloud/external/api/update?token=$BLYNK_AUTH_TOKEN&v3=0"
           curl "https://blynk.cloud/external/api/update?token=$BLYNK_AUTH_TOKEN&v4=0"
