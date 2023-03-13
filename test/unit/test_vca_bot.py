@@ -1,7 +1,6 @@
 """Tests for vca_bot"""
 
 import pytest
-
 import vca_bot
 
 def test_vacuous():
