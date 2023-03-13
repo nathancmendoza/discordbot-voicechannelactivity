@@ -16,7 +16,3 @@ def test_exception():
 def test_parametrize(x, y):
     """Test cases can be parametrized to test multiple inputs at once"""
     assert x + y == y + x
-
-def test_failure():
-    """Test that always fails"""
-    assert False
