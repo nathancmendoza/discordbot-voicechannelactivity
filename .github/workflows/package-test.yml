@@ -24,4 +24,4 @@ jobs:
           python -m pip install .
       - name: Test with pytest
         run: |
-          pytest --cov=sliceoflife_webservice --verbose test/
+          pytest --cov=vca_bot --verbose test/
